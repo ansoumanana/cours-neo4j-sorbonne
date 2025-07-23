@@ -23,6 +23,7 @@ public class EntityResultExample {
 	public record EntityContainer(Node node) {
 	}
 
+	// call example.allnodes() yield node return node
 	@Procedure(name = "example.allnodes", mode = Mode.READ)
 	public Stream<EntityContainer> allnodes() {
 		ResourceIterator<Node> nodes = tx.execute("MATCH (n) RETURN n").columnAs("n");

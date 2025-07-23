@@ -18,8 +18,9 @@ Exemple :
 6. Start votre instance sorbonne
 7. Se connecter sur la base  recommendations
 8. Executer la requete : Lister les projections existantes
+----
 ```
-   CALL gds.graph.list()
+    CALL gds.graph.list()
 ```
 9. Executer la requete : Creation d'une projection 
 ```
@@ -53,3 +54,42 @@ Resultat :
 ```
 Resultat :
 ![img_2.png](img_2.png)
+
+13. Streaming
+
+```
+   CALL gds.graph.nodeProperty.stream(
+      'my-graph-projection',
+      'numberOfMoviesActedIn'
+      )
+    YIELD nodeId, propertyValue
+    RETURN
+      gds.util.asNode(nodeId).name AS actorName,
+      propertyValue AS numberOfMoviesActedIn
+      ORDER BY numberOfMoviesActedIn DESCENDING, actorName LIMIT 10
+```
+Resultat :
+![img_4.png](img_4.png)
+
+14. Ecriture 
+
+```
+  CALL gds.graph.nodeProperties.write(
+  'my-graph-projection',
+  ['numberOfMoviesActedIn'],
+  ['Actor']
+  )
+   
+```
+Resultat :
+![img_5.png](img_5.png)
+
+
+```
+    MATCH (a:Actor)
+    RETURN a.name, a.numberOfMoviesActedIn
+    ORDER BY a.numberOfMoviesActedIn DESCENDING, a.name LIMIT 10
+   
+```
+Resultat :
+![img_6.png](img_6.png)
