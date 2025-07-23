@@ -6,12 +6,13 @@ import org.neo4j.procedure.Description;
 import org.neo4j.procedure.Name;
 import org.neo4j.procedure.UserFunction;
 
-
+/**
+ * This is an example how you can create a simple user-defined function for Neo4j.
+ */
 public class Join {
 
     @UserFunction
     @Description("example.join(['s1','s2',...], delimiter) - join the given strings with the given delimiter.")
-    //"s1,s2"
     public String join(
             @Name("strings") List<String> strings,
             @Name(value = "delimiter", defaultValue = ",") String delimiter) {
