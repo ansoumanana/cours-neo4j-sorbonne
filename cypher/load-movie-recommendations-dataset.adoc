@@ -5,7 +5,7 @@
 ==== Etapes à suivre
 
 . Stop votre instance sorbonne
-. Copier le fichier recommendations.dum dans le dossier import
+. Copier le fichier recommendations.dump dans le dossier import
 . Ouvrir une terminal à partir du dossier bin de votre instance
 . Executer la commande suivante en donnant le chemin complet du dossier import
 

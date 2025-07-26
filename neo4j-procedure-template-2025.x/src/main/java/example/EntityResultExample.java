@@ -8,6 +8,7 @@ import org.neo4j.graphdb.Transaction;
 import org.neo4j.procedure.Context;
 import org.neo4j.procedure.Mode;
 import org.neo4j.procedure.Procedure;
+import org.neo4j.procedure.builtin.BuiltInProcedures;
 
 /**
  * This is an example returning {@link org.neo4j.graphdb.Entity Entities} from stored procedures.
@@ -23,9 +24,14 @@ public class EntityResultExample {
 	public record EntityContainer(Node node) {
 	}
 
+
+
 	@Procedure(name = "example.allnodes", mode = Mode.READ)
 	public Stream<EntityContainer> allnodes() {
+
 		ResourceIterator<Node> nodes = tx.execute("MATCH (n) RETURN n").columnAs("n");
 		return nodes.stream().map(EntityContainer::new);
 	}
+
+
 }
